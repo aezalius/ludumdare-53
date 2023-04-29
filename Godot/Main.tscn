@@ -15,10 +15,10 @@
 position = Vector2(-157, 0)
 
 [node name="BaseEnemy1" parent="." instance=ExtResource("2_ukdlm")]
-position = Vector2(103, 0)
+position = Vector2(252, 158)
 
 [node name="DroppedPackage" parent="." instance=ExtResource("4_e6jnr")]
-position = Vector2(-275, 0)
+position = Vector2(-146, 128)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3

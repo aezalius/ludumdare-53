@@ -9,7 +9,7 @@ position = Vector2(-55, 225)
 script = ExtResource("1_scqf2")
 
 [node name="SpawnLocation" type="Node2D" parent="."]
-position = Vector2(-17, 199)
+position = Vector2(252, 158)
 
 [node name="DroppedPackage" parent="." instance=ExtResource("2_sfv6r")]
 position = Vector2(0, 48)
@@ -23,4 +23,4 @@ position = Vector2(-3, -1)
 position = Vector2(48, 86)
 
 [node name="BaseEnemy3" parent="Enemies" instance=ExtResource("1_8ynan")]
-position = Vector2(-58, 98)
+position = Vector2(-89, 95)
