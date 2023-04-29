@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://piolujfj6hrr"]
+[gd_scene load_steps=5 format=3 uid="uid://piolujfj6hrr"]
 
 [ext_resource type="Script" path="res://Levels/LevelScript.gd" id="1_ofh8u"]
 [ext_resource type="TileSet" uid="uid://tj60j7hhfmh7" path="res://Tilesets/Base/TileSet.tres" id="1_ro83h"]
+[ext_resource type="PackedScene" uid="uid://cth01q25wooxw" path="res://Encounters/TestEncounter.tscn" id="2_pqxp4"]
 [ext_resource type="PackedScene" uid="uid://p41cmke6tiqa" path="res://Entities/QuestGiver/quest_giver.tscn" id="2_rhcjj"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_ofh8u")
+encounter_table = Array[PackedScene]([ExtResource("2_pqxp4")])
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ro83h")
@@ -16,3 +18,6 @@ layer_0/tile_data = PackedInt32Array(65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 6553
 
 [node name="QuestGiver" parent="Interactables" instance=ExtResource("2_rhcjj")]
 position = Vector2(-103, -49)
+
+[node name="TestEncounterSpawnLocation" type="Node2D" parent="."]
+position = Vector2(-104, 133)
