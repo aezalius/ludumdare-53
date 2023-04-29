@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfqg4ungoocs4"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_uelov"]
+[ext_resource type="Texture2D" uid="uid://cpl51kp8rf3k3" path="res://Guy.png" id="2_7jb57"]
+
+[sub_resource type="GDScript" id="GDScript_ytosd"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1xw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4p1p"]
+radius = 41.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_uelov")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+texture = ExtResource("2_7jb57")
+script = SubResource("GDScript_ytosd")
+
+[node name="Collider" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_6c1xw")
+
+[node name="InteractCollider" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_x4p1p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
