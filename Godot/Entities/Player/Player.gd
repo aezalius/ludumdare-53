@@ -6,17 +6,32 @@ extends CharacterBody2D
 @onready var interact_area = $InteractArea
 
 @onready var package_sprite = $PackageSprite
-@onready var package_scene = preload("res://droppedpackage.tscn")
+@onready var package_scene = preload("res://Entities/Interactables/Package/droppedpackage.tscn")
 
 const SPEED = 150.0
 var movement_enabled = true
 
 var holding_package = false
 
+func _ready():
+	QuestHandler.stop_movement.connect(stop_movement)
+	QuestHandler.free_movement.connect(free_movement)
+
+func stop_movement():
+	movement_enabled = false
+
+func free_movement():
+	movement_enabled = true
+
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("menu"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("roll"):
+		for body in interact_area.get_overlapping_bodies():
+			if body.is_in_group("questgiver"):
+				body.interact(package_sprite.visible)
+				if package_sprite.visible:
+					package_sprite.hide()
 		if not package_sprite.visible:
 			for body in interact_area.get_overlapping_bodies():
 				if body.is_in_group("package"):

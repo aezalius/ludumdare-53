@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g22sur4o8s1h"
-path="res://.godot/imported/Base enemy.png-2dc6c54bdab9a0a97a4d9dcf8044a667.ctex"
+uid="uid://cgowdoosmnak1"
+path="res://.godot/imported/Dave.png-871287f161172dcb8c7cf7b7fc9d5bcd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Base enemy.png"
-dest_files=["res://.godot/imported/Base enemy.png-2dc6c54bdab9a0a97a4d9dcf8044a667.ctex"]
+source_file="res://Entities/Player/Dave.png"
+dest_files=["res://.godot/imported/Dave.png-871287f161172dcb8c7cf7b7fc9d5bcd.ctex"]
 
 [params]
 

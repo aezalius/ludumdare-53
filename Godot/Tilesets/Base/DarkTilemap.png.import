@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd06ep15nk3sb"
-path="res://.godot/imported/BaseBackgroundTile.png-b3a58fbdb263c579e595bf550f8b19c6.ctex"
+uid="uid://cmnd30edgf34i"
+path="res://.godot/imported/DarkTilemap.png-d9ec02b66e0b52ef82c9ad9d03e43eb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BaseBackgroundTile.png"
-dest_files=["res://.godot/imported/BaseBackgroundTile.png-b3a58fbdb263c579e595bf550f8b19c6.ctex"]
+source_file="res://Tilesets/Base/DarkTilemap.png"
+dest_files=["res://.godot/imported/DarkTilemap.png-d9ec02b66e0b52ef82c9ad9d03e43eb1.ctex"]
 
 [params]
 

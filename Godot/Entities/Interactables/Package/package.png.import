@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgowdoosmnak1"
-path="res://.godot/imported/Dave.png-60c3cddd27f601e8eb7543d87ff4b6fe.ctex"
+uid="uid://bdhstl0tusmvo"
+path="res://.godot/imported/package.png-c6611c921ea6463a1f2f3a5c1072e427.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dave.png"
-dest_files=["res://.godot/imported/Dave.png-60c3cddd27f601e8eb7543d87ff4b6fe.ctex"]
+source_file="res://Entities/Interactables/Package/package.png"
+dest_files=["res://.godot/imported/package.png-c6611c921ea6463a1f2f3a5c1072e427.ctex"]
 
 [params]
 

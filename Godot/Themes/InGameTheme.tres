@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cxfjh2gm74sf1"]
+
+[ext_resource type="FontFile" uid="uid://c510e1dix4skb" path="res://Themes/Fonts/Crumbled-Pixels.ttf" id="1_6baaq"]
+
+[resource]
+Label/font_sizes/font_size = 47
+Label/fonts/font = ExtResource("1_6baaq")

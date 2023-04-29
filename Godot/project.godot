@@ -15,6 +15,10 @@ run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+QuestHandler="*res://Scripts/Global/QuestHandler.gd"
+
 [display]
 
 window/stretch/mode="viewport"
@@ -55,3 +59,4 @@ menu={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.121569, 0.0196078, 0.0627451, 1)

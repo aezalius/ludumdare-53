@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dq0ubxcl7a4v0"]
+[gd_scene load_steps=11 format=3 uid="uid://dgxjxwuoi15bl"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_fplil"]
-[ext_resource type="Texture2D" uid="uid://cgowdoosmnak1" path="res://Dave.png" id="2_e8ntn"]
-[ext_resource type="Texture2D" uid="uid://bdhstl0tusmvo" path="res://package.png" id="2_m2id7"]
+[ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_wm223"]
+[ext_resource type="Texture2D" uid="uid://cgowdoosmnak1" path="res://Entities/Player/Dave.png" id="2_601ad"]
+[ext_resource type="Texture2D" uid="uid://bdhstl0tusmvo" path="res://Entities/Interactables/Package/package.png" id="2_m2id7"]
 
 [sub_resource type="GDScript" id="GDScript_16fat"]
 script/source = "extends Sprite2D
@@ -23,8 +23,8 @@ func _process(_delta):
 [sub_resource type="CircleShape2D" id="CircleShape2D_2plcr"]
 radius = 53.0
 
-[sub_resource type="Animation" id="Animation_f5lhj"]
-resource_name = "Standing"
+[sub_resource type="Animation" id="Animation_yatu4"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,8 +38,8 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_yatu4"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_f5lhj"]
+resource_name = "Standing"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,11 +80,11 @@ _data = {
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 257
 collision_mask = 257
-script = ExtResource("1_fplil")
+script = ExtResource("1_wm223")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_e8ntn")
+texture = ExtResource("2_601ad")
 hframes = 5
 frame = 1
 script = SubResource("GDScript_16fat")

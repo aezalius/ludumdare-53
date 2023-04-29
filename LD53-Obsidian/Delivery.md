@@ -35,3 +35,13 @@ Normally creatures around only aggro if you get close enough, but holding things
 
 ### Code
 spawn enemies off screen, if they enter the area, the aggro.
+
+### Tiles needed
+stair left
+stair right
+stair middle
+base background
+breakup background 1
+breakup background 2
+Wall 1
+Wall 2
