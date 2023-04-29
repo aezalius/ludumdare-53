@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr44jnr70irp8"]
+
+[ext_resource type="Texture2D" uid="uid://bdhstl0tusmvo" path="res://package.png" id="1_eadtu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1w7q"]
+size = Vector2(9, 9)
+
+[node name="DroppedPackage" type="RigidBody2D" groups=["package"]]
+collision_layer = 512
+collision_mask = 512
+gravity_scale = 0.0
+
+[node name="RigidBody2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_eadtu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_k1w7q")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfqg4ungoocs4"]
+[gd_scene load_steps=5 format=3 uid="uid://bfqg4ungoocs4"]
 
 [ext_resource type="TileSet" uid="uid://cjrfxesgyekht" path="res://TileSet.tres" id="1_q0i1q"]
 [ext_resource type="PackedScene" uid="uid://dq0ubxcl7a4v0" path="res://Player.tscn" id="1_x4na2"]
 [ext_resource type="PackedScene" uid="uid://dopxc8cwisjm6" path="res://BaseEnemy.tscn" id="2_ukdlm"]
+[ext_resource type="PackedScene" uid="uid://dr44jnr70irp8" path="res://droppedpackage.tscn" id="4_e6jnr"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -21,3 +22,6 @@ position = Vector2(-157, 0)
 
 [node name="BaseEnemy1" parent="." instance=ExtResource("2_ukdlm")]
 position = Vector2(103, 0)
+
+[node name="DroppedPackage" parent="." instance=ExtResource("4_e6jnr")]
+position = Vector2(-275, 0)
