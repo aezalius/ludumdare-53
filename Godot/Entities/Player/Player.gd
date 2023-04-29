@@ -12,7 +12,7 @@ const SPEED = 150.0
 var movement_enabled = true
 
 # Rolling
-const ROLL_ACCEL_MULT = 3.0
+const ROLL_ACCEL_MULT = 2.0
 var is_rolling = false
 var can_roll = true
 @onready var roll_timer: Timer = $RollTimer
