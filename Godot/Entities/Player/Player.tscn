@@ -111,3 +111,7 @@ shape = SubResource("CircleShape2D_2plcr")
 libraries = {
 "": SubResource("AnimationLibrary_5wsrp")
 }
+
+[node name="RollTimer" type="Timer" parent="."]
+
+[node name="RollCooldown" type="Timer" parent="."]
