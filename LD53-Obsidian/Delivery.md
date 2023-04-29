@@ -32,3 +32,6 @@ https://lospec.com/palette-list/ink-crimson
 Player accepts requests from various beings to collect and bring back items and parts from around the area.
 The player cannot fight when holding a package, and must avoid the creatures on the way back.
 Normally creatures around only aggro if you get close enough, but holding things makes all creatures on screen aggro.
+
+### Code
+spawn enemies off screen, if they enter the area, the aggro.

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dopxc8cwisjm6"]
+
+[ext_resource type="Texture2D" uid="uid://g22sur4o8s1h" path="res://Base enemy.png" id="1_abtn3"]
+[ext_resource type="Script" path="res://BaseEnemy.gd" id="1_o3opc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jvlus"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gp5om"]
+radius = 122.004
+
+[node name="BaseEnemy" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_o3opc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_abtn3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jvlus")
+
+[node name="AggroRange" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
+shape = SubResource("CircleShape2D_gp5om")
+
+[connection signal="area_entered" from="AggroRange" to="." method="_on_aggro_range_area_entered"]
+[connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]
