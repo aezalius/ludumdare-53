@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ux78h5o5chcv"]
+
+[node name="CasterCircle" type="Node2D"]

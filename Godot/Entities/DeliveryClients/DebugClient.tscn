@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dstsxlavkyqdq"]
+
+[ext_resource type="Texture2D" uid="uid://dha2w6yo7uh65" path="res://Entities/Enemies/CasterEnemy/Caster.png" id="1_jd5sg"]
+[ext_resource type="Script" path="res://Entities/DeliveryClients/DeliveryClient.gd" id="1_q10xo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkad4"]
+size = Vector2(17, 29)
+
+[node name="DeliveryClient" type="StaticBody2D" groups=["deliveryclient"]]
+collision_layer = 513
+collision_mask = 513
+script = ExtResource("1_q10xo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jd5sg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_kkad4")

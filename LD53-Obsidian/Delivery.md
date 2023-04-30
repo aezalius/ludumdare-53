@@ -16,6 +16,8 @@
 Game starts being dropped off from a van, head to a spot to collect the job.
 
 ### Color template ideas
+https://lospec.com/palette-list/endesga-32
+
 **Agressive, very red**
 https://lospec.com/palette-list/midnight-ablaze
 
@@ -35,15 +37,23 @@ Normally creatures around only aggro if you get close enough, but holding things
 
 Of course, couriers don't have weapons, that would be unprofessional!
 
-### Code
-spawn enemies off screen, if they enter the area, the aggro.
+### Game Loop
+##### Start
+Start game in front of the main office, go and interact with your boss.
 
-### Tiles needed
-stair left
-stair right
-stair middle
-base background
-breakup background 1
-breakup background 2
-Wall 1
-Wall 2
+##### Main Loop
+Boss generates some request for you, to go and collect some items out in the world and bring them to a client, then return to the office. 
+
+### TODO:
+1. Generate a quest
+	1. ~~Hold a reference to the level script in the questhandler~~
+	2. ~~Have the questhandler poll the level script for information to generate a quest
+		1. encounter instances from the level
+		2. delivery clients from the level
+		3. 
+	3. ~~Pass that enounter information into a quest instance
+	4. ~~Plug this information into the dialogue box
+2. Make some encounters and clients
+3. customize the package based on the encounter
+4. move to a dialogue handler instead of splitting important features across stuff
+5. replace bad pixel art

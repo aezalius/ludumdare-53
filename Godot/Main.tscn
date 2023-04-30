@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq4jiahane1na"]
+[gd_scene load_steps=8 format=3 uid="uid://cq4jiahane1na"]
 
 [ext_resource type="PackedScene" uid="uid://piolujfj6hrr" path="res://Levels/World1.tscn" id="1_idu0f"]
 [ext_resource type="PackedScene" uid="uid://dgxjxwuoi15bl" path="res://Entities/Player/Player.tscn" id="1_x4na2"]
 [ext_resource type="Theme" uid="uid://cxfjh2gm74sf1" path="res://Themes/InGameTheme.tres" id="2_lqo3r"]
 [ext_resource type="PackedScene" path="res://Entities/Enemies/BaseEnemy/BaseEnemy.tscn" id="2_ukdlm"]
 [ext_resource type="PackedScene" path="res://Entities/Interactables/Package/droppedpackage.tscn" id="4_e6jnr"]
+[ext_resource type="PackedScene" uid="uid://dbummd8u3x56p" path="res://Entities/Enemies/CasterEnemy/CasterEnemy.tscn" id="4_lmdkp"]
 [ext_resource type="Script" path="res://Scripts/DialogueLabel.gd" id="6_vn1cp"]
 
 [node name="Node2D" type="Node2D"]
@@ -16,6 +17,9 @@ position = Vector2(-157, 0)
 
 [node name="BaseEnemy1" parent="." instance=ExtResource("2_ukdlm")]
 position = Vector2(252, 158)
+
+[node name="BaseEnemy" parent="." instance=ExtResource("4_lmdkp")]
+position = Vector2(112, -1)
 
 [node name="DroppedPackage" parent="." instance=ExtResource("4_e6jnr")]
 position = Vector2(-146, 128)
