@@ -13,8 +13,8 @@ func _process(_delta):
 	pass
 
 func _on_damage_timer_timeout():
-	# TODO: damage player
-	pass
+	for body in $DamageZone.get_overlapping_bodies():
+		body.damage()
 
 func _on_destroy_timer_timeout():
 	self.queue_free()

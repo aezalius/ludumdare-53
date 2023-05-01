@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm2lwv0ni0tcj"]
+[gd_scene load_steps=7 format=3 uid="uid://cm2lwv0ni0tcj"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/BaseEnemy/BaseEnemy.gd" id="1_osk3e"]
 [ext_resource type="Texture2D" uid="uid://g22sur4o8s1h" path="res://Entities/Enemies/BaseEnemy/Base enemy.png" id="2_a8g15"]
+[ext_resource type="Script" path="res://Entities/Enemies/DamageArea.gd" id="3_vxbhg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jvlus"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gp5om"]
 radius = 122.004
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qbjn"]
 
 [node name="BaseEnemy" type="RigidBody2D"]
 collision_mask = 0
@@ -20,6 +23,7 @@ texture = ExtResource("2_a8g15")
 shape = SubResource("CircleShape2D_jvlus")
 
 [node name="AggroRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 256
 collision_mask = 256
 monitorable = false
@@ -27,4 +31,16 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
 shape = SubResource("CircleShape2D_gp5om")
 
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 524288
+collision_mask = 524288
+monitorable = false
+script = ExtResource("3_vxbhg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_0qbjn")
+
 [node name="ReturnTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DamageArea" to="DamageArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="DamageArea" method="_on_body_exited"]

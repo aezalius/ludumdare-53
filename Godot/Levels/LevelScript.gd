@@ -33,7 +33,8 @@ func _process(_delta):
 #
 # Reset the list of available encounters
 func reset_available_encounters() -> void:
-	available_encounters = encounters
+	available_encounters.clear()
+	available_encounters = encounters.duplicate()
 	
 #
 # Select a random encounter from those not already reserved, return it.
@@ -48,7 +49,7 @@ func pull_and_reserve_encounter() -> QuestEncounter:
 #
 # Get a random client from the list
 func get_delivery_client() -> DeliveryClient:
-	print("Getting client from " + str(clients.size()) + " available")
+	#print("Getting client from " + str(clients.size()) + " available")
 	return clients[randi_range(0, clients.size() - 1)]
 
 #

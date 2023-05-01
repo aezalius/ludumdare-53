@@ -18,8 +18,11 @@ var free_encounter_with_dialogue = false
 
 #
 # runtime variables
-var quest_complete: bool = false
-var quest_turned_in: bool = false 
+var encounter_stack_idx: int = 0
+var quest_turned_in: bool = false
+
+func is_quest_complete():
+	return current_encounter_idx + encounter_stack_idx >= encounters.size()
 
 #
 # Cleanly delete self
@@ -31,8 +34,8 @@ func clear() -> void:
 #
 # Get the locaiton of the next objective
 func get_target_location() -> Vector2:
-	if current_encounter_idx < encounters.size():
-		return encounters[current_encounter_idx].encounter_location
+	if current_encounter_idx + encounter_stack_idx < encounters.size():
+		return encounters[current_encounter_idx + encounter_stack_idx].encounter_location
 	else:
 		return client.global_position
 
@@ -42,7 +45,7 @@ func complete_current_encounter():
 	current_encounter_idx += 1
 	if current_encounter_idx >= encounters.size():
 		print("All encounters complete")
-		quest_complete = true
+		#quest_complete = true
 	else:
 		print("Quest encounter complete")
 

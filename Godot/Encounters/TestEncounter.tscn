@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cth01q25wooxw"]
 
 [ext_resource type="PackedScene" uid="uid://cm2lwv0ni0tcj" path="res://Entities/Enemies/BaseEnemy/BaseEnemy.tscn" id="1_8ynan"]
-[ext_resource type="PackedScene" path="res://Entities/Interactables/Package/droppedpackage.tscn" id="2_sfv6r"]
+[ext_resource type="PackedScene" uid="uid://cbb2r7inx5iql" path="res://Entities/Interactables/Package/droppedpackage.tscn" id="2_sfv6r"]
 
 [node name="TestEncounter" type="Node2D"]
 

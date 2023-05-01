@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cbb2r7inx5iql"]
 
 [ext_resource type="Texture2D" uid="uid://bdhstl0tusmvo" path="res://Entities/Interactables/Package/package.png" id="1_eadtu"]
 

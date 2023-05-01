@@ -28,7 +28,7 @@ func interact():
 		DialogueHandler.next_dialogue_line()
 	
 	if QuestHandler.active_quest != null and QuestHandler.active_quest.client == self:
-		if QuestHandler.active_quest.quest_complete:
+		if QuestHandler.active_quest.is_quest_complete() and not QuestHandler.active_quest.quest_turned_in:
 			var selected_thanks: String = thanks_speech_options[randi_range(0,thanks_speech_options.size() - 1)]
 			DialogueHandler.current_speech = [selected_thanks]
 			DialogueHandler.next_dialogue_line()

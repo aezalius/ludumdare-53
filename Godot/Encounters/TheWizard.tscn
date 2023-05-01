@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ufkkcpmh4y20"]
+
+[ext_resource type="PackedScene" uid="uid://cbb2r7inx5iql" path="res://Entities/Interactables/Package/droppedpackage.tscn" id="1_f07y0"]
+[ext_resource type="PackedScene" uid="uid://dbummd8u3x56p" path="res://Entities/Enemies/CasterEnemy/CasterEnemy.tscn" id="1_w1qww"]
+
+[node name="TheWizard" type="Node2D"]
+
+[node name="DroppedPackage" parent="." instance=ExtResource("1_f07y0")]
+
+[node name="CasterEnemy" parent="." instance=ExtResource("1_w1qww")]
+position = Vector2(-17, 14)

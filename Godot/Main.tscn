@@ -42,4 +42,4 @@ script = ExtResource("6_vn1cp")
 color = Color(0.203922, 0.305882, 0.337255, 1)
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(341, -339)
+position = Vector2(1095, 531)

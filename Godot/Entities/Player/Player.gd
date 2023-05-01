@@ -11,6 +11,7 @@ class_name Player
 @onready var outer_light = $OuterLight
 @onready var camera = $Camera2D
 @onready var direction_pointer = $DirectionPointer
+@onready var immunity_timer = $ImmunityTimer
 
 ##
 # Package related stuff, to be reworked
@@ -36,6 +37,11 @@ var is_rolling = false
 var can_roll = true
 @onready var roll_timer: Timer = $RollTimer
 @onready var roll_cooldown: Timer = $RollCooldown
+
+##
+# Hitpoints
+@export var max_hp: int = 2
+@export var cur_hp: int = 2
 
 #
 # Called when the node is instanced
@@ -86,20 +92,23 @@ func _physics_process(_delta):
 			if body.is_in_group("questgiver"):
 				body.interact(package_sprite.visible)
 			elif body.is_in_group("deliveryclient"):
-				if QuestHandler.active_quest.quest_complete and not QuestHandler.active_quest.quest_turned_in:
+				if package_sprite.visible and not QuestHandler.active_quest.quest_turned_in:
+					QuestHandler.active_quest.complete_current_encounter()
 					package_sprite.hide()
-					QuestHandler.active_quest.quest_turned_in = true
+					#QuestHandler.active_quest.quest_turned_in = true
 					print("Quest turned in")
 				body.interact()
 		
 		# Temporary package handling
 		if movement_input_enabled:
-			if not package_sprite.visible:
+			if not package_sprite.visible and immunity_timer.is_stopped():
 				for body in interact_area.get_overlapping_bodies():
 					if body.is_in_group("package"):
+						QuestHandler.active_quest.encounter_stack_idx += 1
+						immunity_timer.start()
 						package_sprite.show()
 						body.queue_free()
-						QuestHandler.active_quest.complete_current_encounter()
+						cur_hp = max_hp
 			else:
 				pass
 	
@@ -151,10 +160,21 @@ func _physics_process(_delta):
 # UNUSED
 # player drops package if he is hit, player can take 1 hit if he isnt holding a package
 func damage():
-	if not package_sprite.visible:
-		print("Player has died!")
-	else:
-		pass # drop package
+	# I-Frames
+	if immunity_timer.is_stopped():
+		immunity_timer.start()
+		if not package_sprite.visible:
+			cur_hp -= 1
+			if cur_hp <= 0:
+				print("DED")
+				cur_hp = max_hp # temp
+		else:
+			var new_package: Node2D = package_scene.instantiate()
+			new_package.global_position = package_sprite.global_position
+			get_tree().root.add_child(new_package)
+			package_sprite.visible = false
+			if QuestHandler.active_quest.encounter_stack_idx > 0: # Probably going to cause some funny bugs
+				QuestHandler.active_quest.encounter_stack_idx -= 1
 
 
 

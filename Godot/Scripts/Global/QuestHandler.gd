@@ -37,3 +37,4 @@ func generate_new_quest() -> void:
 func clear_quest() -> void:
 	active_quest.clear()
 	active_quest = null
+	active_level.reset_available_encounters()
