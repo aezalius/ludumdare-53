@@ -10,6 +10,7 @@ class_name Player
 @onready var mid_light = $MidLight
 @onready var outer_light = $OuterLight
 @onready var camera = $Camera2D
+@onready var direction_pointer = $DirectionPointer
 
 ##
 # Package related stuff, to be reworked
@@ -18,7 +19,7 @@ class_name Player
 
 ##
 # Cinematic stuff
-const camera_zoom_normal: Vector2 = Vector2(1.5, 1.5)
+const camera_zoom_normal: Vector2 = Vector2(2, 2)
 const camera_zoom_in: Vector2 = Vector2(3, 3)
 var camera_target_zoom: Vector2 = camera_zoom_normal
 
@@ -30,7 +31,7 @@ var movement_input_enabled = true
 ##
 # Rolling variables
 const ROLL_ACCEL_MULT = 2.0
-var roll_influence_amount = 0.5
+@export var roll_influence_amount = 0.5
 var is_rolling = false
 var can_roll = true
 @onready var roll_timer: Timer = $RollTimer
@@ -71,6 +72,9 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("menu"):
 		get_tree().quit()
 	
+	if QuestHandler.active_quest != null:
+		direction_pointer.global_rotation = global_position.direction_to(QuestHandler.active_quest.get_target_location()).angle() + 90
+	
 	## Camera zooming (Zoom in camera in certain areas, collision layer 24)
 	if camera.zoom != camera_target_zoom:
 		camera.zoom = camera.zoom.lerp(camera_target_zoom, 0.1)
@@ -82,6 +86,10 @@ func _physics_process(_delta):
 			if body.is_in_group("questgiver"):
 				body.interact(package_sprite.visible)
 			elif body.is_in_group("deliveryclient"):
+				if QuestHandler.active_quest.quest_complete and not QuestHandler.active_quest.quest_turned_in:
+					package_sprite.hide()
+					QuestHandler.active_quest.quest_turned_in = true
+					print("Quest turned in")
 				body.interact()
 		
 		# Temporary package handling
@@ -91,11 +99,8 @@ func _physics_process(_delta):
 					if body.is_in_group("package"):
 						package_sprite.show()
 						body.queue_free()
+						QuestHandler.active_quest.complete_current_encounter()
 			else:
-				#package_sprite.hide()
-				#var package_instance: RigidBody2D = package_scene.instantiate()
-				#package_instance.global_position = package_sprite.global_position
-				#get_tree().root.add_child(package_instance)
 				pass
 	
 	

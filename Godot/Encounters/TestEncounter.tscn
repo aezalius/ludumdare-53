@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://cth01q25wooxw"]
 
-[ext_resource type="PackedScene" path="res://Entities/Enemies/BaseEnemy/BaseEnemy.tscn" id="1_8ynan"]
+[ext_resource type="PackedScene" uid="uid://cm2lwv0ni0tcj" path="res://Entities/Enemies/BaseEnemy/BaseEnemy.tscn" id="1_8ynan"]
 [ext_resource type="PackedScene" path="res://Entities/Interactables/Package/droppedpackage.tscn" id="2_sfv6r"]
 
 [node name="TestEncounter" type="Node2D"]
-position = Vector2(-55, 225)
 
 [node name="DroppedPackage" parent="." instance=ExtResource("2_sfv6r")]
-position = Vector2(0, 48)
+position = Vector2(2, -1)
 
 [node name="Enemies" type="Node2D" parent="."]
+position = Vector2(1, 0)
 
 [node name="BaseEnemy" parent="Enemies" instance=ExtResource("1_8ynan")]
 position = Vector2(-3, -1)

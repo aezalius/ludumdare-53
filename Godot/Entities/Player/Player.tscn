@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgxjxwuoi15bl"]
+[gd_scene load_steps=16 format=3 uid="uid://dgxjxwuoi15bl"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_wm223"]
 [ext_resource type="Texture2D" uid="uid://cgowdoosmnak1" path="res://Entities/Player/Dave.png" id="2_601ad"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c1bijsun1ka5e" path="res://Entities/Player/TorchGradient_outer.png" id="4_wruaj"]
 [ext_resource type="Texture2D" uid="uid://c038khbromnbg" path="res://Entities/Player/TorchGradient_mid.png" id="5_iojmn"]
 [ext_resource type="Texture2D" uid="uid://b21n5pmq71tel" path="res://Entities/Player/TorchGradient_inner.png" id="5_uugny"]
+[ext_resource type="Texture2D" uid="uid://xhs7skarkpbw" path="res://Entities/Player/DirectionArrow.png" id="7_lj7fr"]
 
 [sub_resource type="GDScript" id="GDScript_16fat"]
 script/source = "extends Sprite2D
@@ -103,7 +104,7 @@ texture = ExtResource("2_m2id7")
 shape = SubResource("RectangleShape2D_8q262")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.75, 1.75)
 
 [node name="InteractArea" type="Area2D" parent="."]
 collision_layer = 512
@@ -121,22 +122,31 @@ libraries = {
 one_shot = true
 
 [node name="RollCooldown" type="Timer" parent="."]
+wait_time = 0.9
 
 [node name="OuterLight" type="PointLight2D" parent="."]
+light_mask = 43
+visibility_layer = 43
 scale = Vector2(1, 0.7)
-energy = 0.5
+blend_mode = 2
+range_item_cull_mask = 42
 shadow_enabled = true
+shadow_item_cull_mask = 86
 texture = ExtResource("4_wruaj")
 
 [node name="MidLight" type="PointLight2D" parent="."]
+light_mask = 43
+visibility_layer = 43
 scale = Vector2(1, 0.7)
-energy = 0.5
+blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("5_iojmn")
 
 [node name="InnerLight" type="PointLight2D" parent="."]
+light_mask = 43
+visibility_layer = 43
 scale = Vector2(1, 0.7)
-energy = 0.5
+blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("5_uugny")
 
@@ -146,6 +156,13 @@ collision_mask = 8388608
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CinematicAreaDetector"]
 shape = SubResource("RectangleShape2D_t7ea4")
+
+[node name="DirectionPointer" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.905882)
+z_index = 1
+position = Vector2(0, -17)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_lj7fr")
 
 [connection signal="area_entered" from="CinematicAreaDetector" to="." method="_on_cinematic_area_detector_area_entered"]
 [connection signal="area_exited" from="CinematicAreaDetector" to="." method="_on_cinematic_area_detector_area_exited"]

@@ -11,8 +11,13 @@ class_name CasterEnemy
 # Inspector stuffs
 @export var spell_cast_delay: float = 0.4
 @export var spell_burst_cooldown: float = 2.0
-@export var spell_burst_cast_amount: int = 5
+@export var spell_burst_cast_amount: int = 6
 @export var spell_burst_cooldown_random_range: float = 0.25
+
+@export var player_ideal_distance_min: float = 100
+@export var player_ideal_distance_max: float = 200
+
+var ideal_player_distance: float
 
 
 ##
@@ -30,6 +35,10 @@ var spells_cast_in_burst = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	base_enemy_setup()
+	
+	#ideal_player_distance = aggro_range / 2
+	player_ideal_distance_min = aggro_range / 2.0
+	player_ideal_distance_max = (aggro_range / 3.0) * 2.0
 	
 	spell_cast_timer.wait_time = spell_cast_delay
 	spell_cast_timer.timeout.connect(spell_cooldown_timeout)
@@ -75,8 +84,16 @@ func _physics_process(delta):
 		
 		if spell_cast_timer.is_stopped():
 			spell_cast_timer.start(spell_cast_delay)
+		
+		
 		# Keep the player at a certain distance for casting spells.
-		var velocity = global_position.direction_to(player.global_position)
+		var velocity: Vector2 = Vector2.ZERO
+		if player_distance < player_ideal_distance_min:
+			velocity = Vector2.ZERO - global_position.direction_to(player.global_position)
+		elif player_distance > player_ideal_distance_max:
+			velocity = global_position.direction_to(player.global_position)
+		
+		
 		if velocity.x < 0:
 			sprite.flip_h = true
 		elif velocity.x > 0:

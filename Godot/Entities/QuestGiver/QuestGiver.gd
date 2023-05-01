@@ -6,21 +6,12 @@ var greeting = ["'Sup, Dave", "Yo, got a new one in", "Howdy"]
 var request = [" needs a ", " wants another ", " is craving a ", " is wanting one ", " requested a ", " put in an order for a "]
 var ending = ["Stay safe!", "Have fun", "Don't get eaten", "Good luck", "That's it"]
 var thanks = ["Good work out there", "Good job, Dave", "Nice work!", "Review just came in, good stuff!"]
+var quest_complete_options = ["Review just came in, very nice!", "Good work!", "Nice job, onto the next one, then"]
 
 ##
 # Current dialogue holding, to be moved to a dialogue handler global
 var current_speech: Array
 var speech_index = 0
-
-#
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-#
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 #
 # Called when the player presses the interact key when overlapping
@@ -36,6 +27,10 @@ func interact(holding: bool = false):
 				QuestHandler.generate_new_quest()
 				generate_request_speech()
 			DialogueHandler.next_dialogue_line()
+		elif QuestHandler.active_quest.quest_turned_in:
+			generate_quest_complete_speech()
+			DialogueHandler.next_dialogue_line()
+			QuestHandler.clear_quest()
 		else:
 			# TODO: maybe allow for scrapping a quest
 			# if the player is holding an item
@@ -68,21 +63,6 @@ func generate_thanks_speech() -> void:
 func generate_misc_speech() -> void:
 	DialogueHandler.current_speech = ["You're on the clock, dude...", "Get back out there!"]
 
-#
-# Advance the dialogue, TODO: move this to a dialogue handler
-func next_dialogue_line() -> void:
-	if current_speech.size() > 0 and speech_index < current_speech.size():
-		QuestHandler.emit_signal("stop_movement")
-		DialogueHandler.emit_signal("next_dialogue_line_s", current_speech[speech_index])
-		speech_index += 1
-		#if free_encounter_with_dialogue:
-		#	emit_signal("remove_encounter")
-		#	free_encounter_with_dialogue = false
-	else:
-		QuestHandler.emit_signal("free_movement")
-		DialogueHandler.emit_signal("clear_dialogue")
-		current_speech = []
-		speech_index = 0
-		#if spawn_encounter_after_dialogue:
-		#	emit_signal("spawn_encounter")
-		#	spawn_encounter_after_dialogue = false
+func generate_quest_complete_speech() -> void:
+	var selected_speech = quest_complete_options[randi_range(0, quest_complete_options.size() - 1)]
+	DialogueHandler.current_speech = [selected_speech]

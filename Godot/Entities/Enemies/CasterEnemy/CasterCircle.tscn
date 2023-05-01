@@ -1,16 +1,80 @@
-[gd_scene load_steps=4 format=3 uid="uid://ux78h5o5chcv"]
+[gd_scene load_steps=18 format=3 uid="uid://ux78h5o5chcv"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/CasterEnemy/CasterCircle.gd" id="1_g11v5"]
 [ext_resource type="Texture2D" uid="uid://b21n5pmq71tel" path="res://Entities/Player/TorchGradient_inner.png" id="1_xvu7t"]
+[ext_resource type="Texture2D" uid="uid://udheeehsuwu3" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle1.png" id="3_yu5in"]
+[ext_resource type="Texture2D" uid="uid://nyj5ndxtn626" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle2.png" id="4_1omsj"]
+[ext_resource type="Texture2D" uid="uid://df5osm0yfghmn" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle3.png" id="5_fu5sv"]
+[ext_resource type="Texture2D" uid="uid://dh8ywwbc47tt7" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle4.png" id="6_vlb5o"]
+[ext_resource type="Texture2D" uid="uid://m0jdm185eru1" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle5.png" id="7_tifh3"]
+[ext_resource type="Texture2D" uid="uid://dh2xw5qoye2g8" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle6.png" id="8_t0826"]
+[ext_resource type="Texture2D" uid="uid://drasfgit8d4v2" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle7.png" id="9_rofs2"]
+[ext_resource type="Texture2D" uid="uid://c3lwibpecbthw" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle8.png" id="10_wslbx"]
+[ext_resource type="Texture2D" uid="uid://bp8a2f06176jb" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle9.png" id="11_bmxc5"]
+[ext_resource type="Texture2D" uid="uid://cpx6demaqiulh" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle10.png" id="12_65fxf"]
+[ext_resource type="Texture2D" uid="uid://umpb4v2jr374" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle11.png" id="13_l5agw"]
+[ext_resource type="Texture2D" uid="uid://b1p4oacnrjypp" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle12.png" id="14_4cy81"]
+[ext_resource type="Texture2D" uid="uid://i3a332wyhyko" path="res://Entities/Enemies/CasterEnemy/Spell/AnimFrames/SpellCircle13.png" id="15_it6pc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydj2y"]
 radius = 14.0
 height = 40.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ckjy6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yu5in")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1omsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fu5sv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vlb5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tifh3")
+}, {
+"duration": 2.0,
+"texture": ExtResource("8_t0826")
+}, {
+"duration": 2.0,
+"texture": ExtResource("9_rofs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wslbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bmxc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_65fxf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_l5agw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4cy81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_it6pc")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
 [node name="CasterCircle" type="Node2D"]
 script = ExtResource("1_g11v5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 0.396078, 0.333333, 0.388235)
 position = Vector2(0, 1.90735e-06)
 scale = Vector2(0.25, 0.182292)
@@ -30,6 +94,12 @@ autostart = true
 wait_time = 1.25
 one_shot = true
 autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.662745, 0.45098, 0.47451, 0.717647)
+sprite_frames = SubResource("SpriteFrames_ckjy6")
+frame = 12
+frame_progress = 1.0
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

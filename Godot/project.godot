@@ -73,6 +73,16 @@ interact={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="global default"
+2d_render/layer_2="background_lit"
+2d_render/layer_3="background_occluders"
+2d_render/layer_4="block_.lit"
+2d_render/layer_5="block_occluder"
+2d_render/layer_6="player_lit"
+2d_render/layer_7="player_occluder"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

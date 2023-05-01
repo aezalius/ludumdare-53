@@ -5,7 +5,7 @@ class_name QuestEncounter
 # Inspector stuffs
 @export var encounter_name: String = "TestEncounter"
 @export var package_name: String = "Toad Heart"
-@export var encounter_location: Vector2
+@export var encounter_location: Vector2 = Vector2.ZERO
 @export var encounter_scene: PackedScene
 
 ##
@@ -25,8 +25,9 @@ func _process(_delta):
 #
 # Create an instance of the encounter, store and return it
 func spawn() -> Node:
+	print("Spawning encounter 2")
 	spawned_scene = encounter_scene.instantiate()
-	spawned_scene.global_transform = encounter_location
+	spawned_scene.global_position = encounter_location
 	return spawned_scene
 
 #
@@ -34,3 +35,6 @@ func spawn() -> Node:
 func activate():
 	if spawned_scene.is_in_group("ActivatableEncounter"):
 		spawned_scene.activate()
+
+func clear():
+	spawned_scene.queue_free()

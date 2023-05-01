@@ -9,10 +9,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gp5om"]
 radius = 122.004
 
-[node name="BaseEnemy" type="RigidBody2D"]
+[node name="CasterEnemy" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_gjrww")
+move_speed = 60
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fhduo")
@@ -37,8 +38,9 @@ one_shot = true
 one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(1, 1, 1, 0.466667)
-energy = 0.25
+scale = Vector2(0.5, 0.35)
+color = Color(1, 1, 1, 0.388235)
+blend_mode = 2
 texture = ExtResource("3_rfe68")
 
 [connection signal="timeout" from="SpellCastTimer" to="." method="_on_spell_cast_timer_timeout"]
