@@ -2,8 +2,6 @@ extends Node
 
 ##
 # Misc stuff to be moved later
-signal next_dialogue_line_s(line: String)
-signal clear_dialogue()
 signal spawn_encounter()
 signal remove_encounter()
 

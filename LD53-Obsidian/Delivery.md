@@ -57,3 +57,20 @@ Boss generates some request for you, to go and collect some items out in the wor
 3. customize the package based on the encounter
 4. move to a dialogue handler instead of splitting important features across stuff
 5. replace bad pixel art
+
+### Todo for Monday
+1. Build out world
+2. Place 3-ish delivery clients
+	1. Ag'roth, a mass of flesh who is oddly nice
+	2. Jeff, a Jeff
+	3. 
+3. Build 3 or 4 encounters
+	1. Wizard, who summons exploding circles
+	2. The bow-man group
+	3. Pack of little angry dudes, just a ton of little guys who chase super far
+	4. One big burly guy who leaps at you
+4. Stretch:
+	1. Add some action other than rolling
+	2. Main menu
+	3. intro cutscene?
+	4. 

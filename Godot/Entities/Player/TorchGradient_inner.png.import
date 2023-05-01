@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmnd30edgf34i"
-path="res://.godot/imported/DarkTilemap.png-d9ec02b66e0b52ef82c9ad9d03e43eb1.ctex"
+uid="uid://b21n5pmq71tel"
+path="res://.godot/imported/TorchGradient_inner.png-e85f21d6154485a6d31772008d6f89f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tilesets/Base/DarkTilemap.png"
-dest_files=["res://.godot/imported/DarkTilemap.png-d9ec02b66e0b52ef82c9ad9d03e43eb1.ctex"]
+source_file="res://Entities/Player/TorchGradient_inner.png"
+dest_files=["res://.godot/imported/TorchGradient_inner.png-e85f21d6154485a6d31772008d6f89f4.ctex"]
 
 [params]
 

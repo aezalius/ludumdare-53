@@ -1,15 +1,26 @@
 extends CharacterBody2D
+class_name Player
 
 ##
 # Misc
 @onready var sprite = $Sprite2D
 @onready var anim_player = $AnimationPlayer
 @onready var interact_area = $InteractArea
+@onready var inner_light = $InnerLight
+@onready var mid_light = $MidLight
+@onready var outer_light = $OuterLight
+@onready var camera = $Camera2D
 
 ##
 # Package related stuff, to be reworked
 @onready var package_sprite = $PackageSprite
 @onready var package_scene = preload("res://Entities/Interactables/Package/droppedpackage.tscn")
+
+##
+# Cinematic stuff
+const camera_zoom_normal: Vector2 = Vector2(1.5, 1.5)
+const camera_zoom_in: Vector2 = Vector2(3, 3)
+var camera_target_zoom: Vector2 = camera_zoom_normal
 
 ##
 # Movement variables
@@ -28,12 +39,20 @@ var can_roll = true
 #
 # Called when the node is instanced
 func _ready():
+	GameHandler.player_instance = self
+	
 	QuestHandler.stop_movement.connect(stop_movement)
 	QuestHandler.free_movement.connect(free_movement)
 	roll_timer.set_wait_time(0.3)
 	roll_timer.connect("timeout", func(): is_rolling = false; free_movement())
 	roll_cooldown.set_wait_time(0.4)
 	roll_cooldown.connect("timeout", func(): can_roll = true)
+
+func camera_cinematic_zoom():
+	camera_target_zoom = camera_zoom_in
+
+func camera_normal_zoom():
+	camera_target_zoom = camera_zoom_normal
 
 #
 # Locks the player movement
@@ -52,7 +71,10 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("menu"):
 		get_tree().quit()
 	
-	
+	## Camera zooming (Zoom in camera in certain areas, collision layer 24)
+	if camera.zoom != camera_target_zoom:
+		camera.zoom = camera.zoom.lerp(camera_target_zoom, 0.1)
+		
 	## Interactions
 	if Input.is_action_just_pressed("interact"):
 		# trigger interact on bodies
@@ -80,6 +102,7 @@ func _physics_process(_delta):
 	## Movement, fairly standard with rolling added
 	var direction = Input.get_vector("left","right","up", "down");
 	var new_velocity = direction * SPEED # needed to allow for rolling while movement input is disabled
+	
 	if movement_input_enabled:
 		if Input.is_action_just_pressed("roll") and can_roll:
 			is_rolling = true
@@ -113,6 +136,11 @@ func _physics_process(_delta):
 	
 	# apply velocity
 	move_and_slide()
+	
+	camera.global_position = camera.global_position.slerp(global_position - (velocity/20), .4)
+	inner_light.global_position = inner_light.global_position.slerp(sprite.global_position - (velocity/20), .125) 
+	mid_light.global_position = mid_light.global_position.slerp(sprite.global_position - (velocity/20), .15) 
+	outer_light.global_position = outer_light.global_position.slerp(sprite.global_position - (velocity/20), .225) 
 
 #
 # UNUSED
@@ -123,3 +151,10 @@ func damage():
 	else:
 		pass # drop package
 
+
+
+func _on_cinematic_area_detector_area_entered(_area):
+	camera_cinematic_zoom()
+
+func _on_cinematic_area_detector_area_exited(_area):
+	camera_normal_zoom()

@@ -3,8 +3,8 @@ extends Label
 #
 # Called when the node enters the scene tree
 func _ready():
-	QuestHandler.next_dialogue_line_s.connect(set_line)
-	QuestHandler.clear_dialogue.connect(clear_line)
+	DialogueHandler.next_dialogue_line_s.connect(set_line)
+	DialogueHandler.clear_dialogue.connect(clear_line)
 
 #
 # Sets the text

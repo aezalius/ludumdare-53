@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp43c2g857pek"]
+[gd_scene load_steps=5 format=3 uid="uid://cm2lwv0ni0tcj"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/BaseEnemy/BaseEnemy.gd" id="1_osk3e"]
 [ext_resource type="Texture2D" uid="uid://g22sur4o8s1h" path="res://Entities/Enemies/BaseEnemy/Base enemy.png" id="2_a8g15"]
@@ -26,6 +26,8 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
 shape = SubResource("CircleShape2D_gp5om")
+
+[node name="ReturnTimer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="AggroRange" to="." method="_on_aggro_range_area_entered"]
 [connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]

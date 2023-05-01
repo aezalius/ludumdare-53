@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbummd8u3x56p"]
+[gd_scene load_steps=6 format=3 uid="uid://dbummd8u3x56p"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/CasterEnemy/CasterEnemy.gd" id="1_gjrww"]
 [ext_resource type="Texture2D" uid="uid://dha2w6yo7uh65" path="res://Entities/Enemies/CasterEnemy/Caster.png" id="2_fhduo"]
+[ext_resource type="Texture2D" uid="uid://c038khbromnbg" path="res://Entities/Player/TorchGradient_mid.png" id="3_rfe68"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jvlus"]
 
@@ -27,5 +28,17 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange"]
 shape = SubResource("CircleShape2D_gp5om")
 
-[connection signal="area_entered" from="AggroRange" to="." method="_on_aggro_range_area_entered"]
-[connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]
+[node name="SpellCastTimer" type="Timer" parent="."]
+
+[node name="ReturnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpellBurstCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 1, 0.466667)
+energy = 0.25
+texture = ExtResource("3_rfe68")
+
+[connection signal="timeout" from="SpellCastTimer" to="." method="_on_spell_cast_timer_timeout"]

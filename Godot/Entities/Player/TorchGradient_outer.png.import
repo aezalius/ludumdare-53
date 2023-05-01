@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd06ep15nk3sb"
-path="res://.godot/imported/BaseBackgroundTile.png-372a5c5385aa0b6be11ac75ee20df1bc.ctex"
+uid="uid://c1bijsun1ka5e"
+path="res://.godot/imported/TorchGradient_outer.png-743723d4a99aab554b62f08eaed03ca7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tilesets/Base/BaseBackgroundTile.png"
-dest_files=["res://.godot/imported/BaseBackgroundTile.png-372a5c5385aa0b6be11ac75ee20df1bc.ctex"]
+source_file="res://Entities/Player/TorchGradient_outer.png"
+dest_files=["res://.godot/imported/TorchGradient_outer.png-743723d4a99aab554b62f08eaed03ca7.ctex"]
 
 [params]
 

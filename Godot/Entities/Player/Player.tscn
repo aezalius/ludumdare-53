@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgxjxwuoi15bl"]
+[gd_scene load_steps=15 format=3 uid="uid://dgxjxwuoi15bl"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_wm223"]
 [ext_resource type="Texture2D" uid="uid://cgowdoosmnak1" path="res://Entities/Player/Dave.png" id="2_601ad"]
 [ext_resource type="Texture2D" uid="uid://bdhstl0tusmvo" path="res://Entities/Interactables/Package/package.png" id="2_m2id7"]
+[ext_resource type="Texture2D" uid="uid://c1bijsun1ka5e" path="res://Entities/Player/TorchGradient_outer.png" id="4_wruaj"]
+[ext_resource type="Texture2D" uid="uid://c038khbromnbg" path="res://Entities/Player/TorchGradient_mid.png" id="5_iojmn"]
+[ext_resource type="Texture2D" uid="uid://b21n5pmq71tel" path="res://Entities/Player/TorchGradient_inner.png" id="5_uugny"]
 
 [sub_resource type="GDScript" id="GDScript_16fat"]
 script/source = "extends Sprite2D
@@ -77,6 +80,8 @@ _data = {
 "Walking": SubResource("Animation_ksgam")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7ea4"]
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 257
 collision_mask = 257
@@ -98,7 +103,7 @@ texture = ExtResource("2_m2id7")
 shape = SubResource("RectangleShape2D_8q262")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="InteractArea" type="Area2D" parent="."]
 collision_layer = 512
@@ -113,5 +118,34 @@ libraries = {
 }
 
 [node name="RollTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="RollCooldown" type="Timer" parent="."]
+
+[node name="OuterLight" type="PointLight2D" parent="."]
+scale = Vector2(1, 0.7)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("4_wruaj")
+
+[node name="MidLight" type="PointLight2D" parent="."]
+scale = Vector2(1, 0.7)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("5_iojmn")
+
+[node name="InnerLight" type="PointLight2D" parent="."]
+scale = Vector2(1, 0.7)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("5_uugny")
+
+[node name="CinematicAreaDetector" type="Area2D" parent="."]
+collision_layer = 8388608
+collision_mask = 8388608
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CinematicAreaDetector"]
+shape = SubResource("RectangleShape2D_t7ea4")
+
+[connection signal="area_entered" from="CinematicAreaDetector" to="." method="_on_cinematic_area_detector_area_entered"]
+[connection signal="area_exited" from="CinematicAreaDetector" to="." method="_on_cinematic_area_detector_area_exited"]
