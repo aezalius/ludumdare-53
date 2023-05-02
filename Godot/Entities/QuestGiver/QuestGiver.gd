@@ -2,11 +2,12 @@ extends StaticBody2D
 
 ##
 # Dialogue options list
-var greeting = ["'Sup, Dave", "Yo, got a new one in", "Howdy"]
-var request = [" needs a ", " wants another ", " is craving a ", " is wanting one ", " requested a ", " put in an order for a "]
-var ending = ["Stay safe!", "Have fun", "Don't get eaten", "Good luck", "That's it"]
+var greeting = ["Finally, work's piling up", "Mornin', Dave...", "Oh great, we can get to work", "Mornin', or whatever time it is here", "Got a fresh delivery here"]
+var sifting = ["lets see here...", "Got a good one in today,"]
+var request = [" needs a ", " wants another ", " craves a fresh ", " needs you to grab a ", " wants a ", " put in an order for one "]
+var ending = ["Who knows what he does with the things...", "Oh, and he's being a bit grumpy today, so...", "Make sure he doesn't eat you", "Good luck, you'll need it with his temper today..."]
 var thanks = ["Good work out there", "Good job, Dave", "Nice work!", "Review just came in, good stuff!"]
-var quest_complete_options = ["Review just came in, very nice!", "Good work!", "Nice job, onto the next one, then"]
+var quest_complete_options = ["Oh, good work I guess...", "He left a decent enough review", "He... didn't say much..."]
 
 ##
 # Current dialogue holding, to be moved to a dialogue handler global
@@ -45,9 +46,10 @@ func interact(holding: bool = false):
 # Generate the speech for a quest request, add in needed stuff from the active quest after generation
 func generate_request_speech() -> void: # TODO: add some failsafes in case no quest is loaded and this is called
 	var selected_greeting = greeting[randi_range(0,greeting.size() - 1)]
-	var selected_request = QuestHandler.active_quest.client.client_name + " " + request[randi_range(0,request.size() - 1)] + " THING"
+	var selected_sifting = sifting[randi_range(0,sifting.size() - 1)]
+	var selected_request = QuestHandler.active_quest.client.client_name + " " + request[randi_range(0,request.size() - 1)] + " " + QuestHandler.active_quest.get_current_encounter().package_name
 	var selected_ending = ending[randi_range(0,ending.size() - 1)]
-	DialogueHandler.current_speech = [selected_greeting, selected_request, selected_ending]
+	DialogueHandler.current_speech = [selected_greeting, selected_sifting, selected_request, selected_ending]
 	#spawn_encounter_after_dialogue = true
 
 #

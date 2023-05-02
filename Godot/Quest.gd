@@ -55,3 +55,8 @@ func spawn_next_encounter(level: Level):
 	print("Spawning encounter")
 	level.get_tree().root.add_child(encounters[current_encounter_idx].spawn())
 	encounters[current_encounter_idx].activate()
+
+#
+# Get the current encounter
+func get_current_encounter() -> QuestEncounter:
+	return encounters[current_encounter_idx]

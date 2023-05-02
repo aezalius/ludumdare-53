@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
+
+@export var respawn_location: Vector2 = Vector2(-327,-28)
+
 ##
 # Misc
 @onready var sprite = $Sprite2D
@@ -32,7 +35,7 @@ var movement_input_enabled = true
 ##
 # Rolling variables
 const ROLL_ACCEL_MULT = 2.0
-@export var roll_influence_amount = 0.5
+var roll_influence_amount = 0.5
 var is_rolling = false
 var can_roll = true
 @onready var roll_timer: Timer = $RollTimer
@@ -92,7 +95,7 @@ func _physics_process(_delta):
 			if body.is_in_group("questgiver"):
 				body.interact(package_sprite.visible)
 			elif body.is_in_group("deliveryclient"):
-				if package_sprite.visible and not QuestHandler.active_quest.quest_turned_in:
+				if package_sprite.visible and not QuestHandler.active_quest.quest_turned_in and body == QuestHandler.active_quest.client:
 					QuestHandler.active_quest.complete_current_encounter()
 					package_sprite.hide()
 					#QuestHandler.active_quest.quest_turned_in = true
@@ -121,6 +124,7 @@ func _physics_process(_delta):
 		if Input.is_action_just_pressed("roll") and can_roll:
 			is_rolling = true
 			stop_movement()
+			anim_player.play("Dash")
 			can_roll = false
 			roll_timer.start()
 			roll_cooldown.start() # apparently cannot be called in a function called elsewhere, huh
@@ -130,7 +134,8 @@ func _physics_process(_delta):
 			new_velocity *= ROLL_ACCEL_MULT
 		
 		if new_velocity != Vector2.ZERO:
-			anim_player.play("Walking")
+			if not is_rolling and cur_hp > 0:
+				anim_player.play("Walking")
 			if direction.x < 0:
 				sprite.flip_h = true
 			else:
@@ -166,8 +171,10 @@ func damage():
 		if not package_sprite.visible:
 			cur_hp -= 1
 			if cur_hp <= 0:
-				print("DED")
 				cur_hp = max_hp # temp
+				stop_movement()
+				anim_player.play("Death")
+				$DeathMoveTimer.start()
 		else:
 			var new_package: Node2D = package_scene.instantiate()
 			new_package.global_position = package_sprite.global_position
@@ -183,3 +190,8 @@ func _on_cinematic_area_detector_area_entered(_area):
 
 func _on_cinematic_area_detector_area_exited(_area):
 	camera_normal_zoom()
+
+
+func _on_death_move_timer_timeout():
+	global_position = respawn_location
+	free_movement()

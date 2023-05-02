@@ -5,6 +5,7 @@ class_name QuestEncounter
 # Inspector stuffs
 @export var encounter_name: String = "TestEncounter"
 @export var package_name: String = "Toad Heart"
+@export var package_texture: CompressedTexture2D = preload("res://Entities/Interactables/Package/package.png")
 @export var encounter_location: Vector2 = Vector2.ZERO
 @export var encounter_scene: PackedScene
 
@@ -33,6 +34,7 @@ func spawn() -> Node:
 #
 # Activate the encounter if it is of that type
 func activate():
+	spawned_scene.get_child(0).set_sprite(package_texture)
 	if spawned_scene.is_in_group("ActivatableEncounter"):
 		spawned_scene.activate()
 

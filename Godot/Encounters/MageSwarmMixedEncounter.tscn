@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7141tniq31ij"]
+
+[ext_resource type="PackedScene" uid="uid://cbb2r7inx5iql" path="res://Entities/Interactables/Package/droppedpackage.tscn" id="1_pxshp"]
+[ext_resource type="PackedScene" uid="uid://cm2lwv0ni0tcj" path="res://Entities/Enemies/BaseEnemy/BaseEnemy.tscn" id="2_gfvji"]
+[ext_resource type="PackedScene" uid="uid://dbummd8u3x56p" path="res://Entities/Enemies/CasterEnemy/CasterEnemy.tscn" id="3_bbfea"]
+
+[node name="TestEncounter" type="Node2D"]
+
+[node name="DroppedPackage" parent="." instance=ExtResource("1_pxshp")]
+position = Vector2(2, -1)
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="BaseEnemy6" parent="Enemies" instance=ExtResource("2_gfvji")]
+position = Vector2(1, -53)
+
+[node name="BaseEnemy4" parent="Enemies" instance=ExtResource("2_gfvji")]
+position = Vector2(120, -29)
+
+[node name="BaseEnemy5" parent="Enemies" instance=ExtResource("2_gfvji")]
+position = Vector2(-113, -46)
+
+[node name="BaseEnemy3" parent="Enemies" instance=ExtResource("2_gfvji")]
+position = Vector2(-37, 83)
+
+[node name="BaseEnemy9" parent="Enemies" instance=ExtResource("2_gfvji")]
+position = Vector2(-54, -40)
+
+[node name="BaseEnemy10" parent="Enemies" instance=ExtResource("2_gfvji")]
+position = Vector2(-116, 57)
+
+[node name="BaseEnemy11" parent="Enemies" instance=ExtResource("2_gfvji")]
+position = Vector2(132, 45)
+
+[node name="BaseEnemy12" parent="Enemies" instance=ExtResource("2_gfvji")]
+position = Vector2(82, 18)
+
+[node name="CasterEnemy" parent="Enemies" instance=ExtResource("3_bbfea")]
+position = Vector2(-19, 18)

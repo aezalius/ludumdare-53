@@ -17,7 +17,7 @@ enum AIState {ATTACK, RETURN, HOLD}
 
 @export var range_buffer = 10.0
 
-@export var move_speed = 30
+@export var move_speed = 60
 
 ##
 # onreadys

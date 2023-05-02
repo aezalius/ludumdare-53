@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgxjxwuoi15bl"]
+[gd_scene load_steps=18 format=3 uid="uid://dgxjxwuoi15bl"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_wm223"]
-[ext_resource type="Texture2D" uid="uid://cgowdoosmnak1" path="res://Entities/Player/Dave.png" id="2_601ad"]
 [ext_resource type="Texture2D" uid="uid://bdhstl0tusmvo" path="res://Entities/Interactables/Package/package.png" id="2_m2id7"]
+[ext_resource type="Texture2D" uid="uid://db26g1n7vv2jf" path="res://Entities/Player/Dave1_spritesheet.png" id="2_p76uq"]
 [ext_resource type="Texture2D" uid="uid://c1bijsun1ka5e" path="res://Entities/Player/TorchGradient_outer.png" id="4_wruaj"]
 [ext_resource type="Texture2D" uid="uid://c038khbromnbg" path="res://Entities/Player/TorchGradient_mid.png" id="5_iojmn"]
 [ext_resource type="Texture2D" uid="uid://b21n5pmq71tel" path="res://Entities/Player/TorchGradient_inner.png" id="5_uugny"]
@@ -41,9 +41,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_f5lhj"]
 resource_name = "Standing"
+length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,10 +65,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [1]
+"values": [1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_ksgam"]
@@ -64,18 +78,52 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ayias"]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_i4ng1"]
+resource_name = "Dash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5wsrp"]
 _data = {
+"Dash": SubResource("Animation_i4ng1"),
+"Death": SubResource("Animation_ayias"),
 "RESET": SubResource("Animation_yatu4"),
 "Standing": SubResource("Animation_f5lhj"),
 "Walking": SubResource("Animation_ksgam")
@@ -90,8 +138,9 @@ script = ExtResource("1_wm223")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_601ad")
-hframes = 5
+texture = ExtResource("2_p76uq")
+hframes = 4
+vframes = 4
 frame = 1
 script = SubResource("GDScript_16fat")
 
@@ -119,6 +168,7 @@ libraries = {
 }
 
 [node name="RollTimer" type="Timer" parent="."]
+wait_time = 0.8
 one_shot = true
 
 [node name="RollCooldown" type="Timer" parent="."]
@@ -168,5 +218,9 @@ texture = ExtResource("7_lj7fr")
 wait_time = 0.5
 one_shot = true
 
+[node name="DeathMoveTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="CinematicAreaDetector" to="." method="_on_cinematic_area_detector_area_entered"]
 [connection signal="area_exited" from="CinematicAreaDetector" to="." method="_on_cinematic_area_detector_area_exited"]
+[connection signal="timeout" from="DeathMoveTimer" to="." method="_on_death_move_timer_timeout"]

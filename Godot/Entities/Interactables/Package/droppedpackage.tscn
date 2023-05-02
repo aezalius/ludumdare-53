@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbb2r7inx5iql"]
+[gd_scene load_steps=4 format=3 uid="uid://cbb2r7inx5iql"]
 
+[ext_resource type="Script" path="res://Entities/Interactables/Package/Package.gd" id="1_cw6rd"]
 [ext_resource type="Texture2D" uid="uid://bdhstl0tusmvo" path="res://Entities/Interactables/Package/package.png" id="1_eadtu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1w7q"]
@@ -9,6 +10,7 @@ size = Vector2(9, 9)
 collision_layer = 512
 collision_mask = 512
 gravity_scale = 0.0
+script = ExtResource("1_cw6rd")
 
 [node name="RigidBody2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_eadtu")

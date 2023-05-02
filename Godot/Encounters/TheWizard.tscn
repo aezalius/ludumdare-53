@@ -8,4 +8,7 @@
 [node name="DroppedPackage" parent="." instance=ExtResource("1_f07y0")]
 
 [node name="CasterEnemy" parent="." instance=ExtResource("1_w1qww")]
-position = Vector2(-17, 14)
+position = Vector2(-34, 27)
+
+[node name="CasterEnemy2" parent="." instance=ExtResource("1_w1qww")]
+position = Vector2(39, -45)

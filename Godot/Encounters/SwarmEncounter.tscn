@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsloi6phf0pus"]
+
+[ext_resource type="PackedScene" uid="uid://cbb2r7inx5iql" path="res://Entities/Interactables/Package/droppedpackage.tscn" id="1_jdbub"]
+[ext_resource type="PackedScene" uid="uid://cm2lwv0ni0tcj" path="res://Entities/Enemies/BaseEnemy/BaseEnemy.tscn" id="2_ooroq"]
+
+[node name="TestEncounter" type="Node2D"]
+
+[node name="DroppedPackage" parent="." instance=ExtResource("1_jdbub")]
+position = Vector2(2, -1)
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="BaseEnemy6" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(-5, -101)
+
+[node name="BaseEnemy7" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(32, -104)
+
+[node name="BaseEnemy2" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(28, 47)
+
+[node name="BaseEnemy4" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(109, -75)
+
+[node name="BaseEnemy5" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(75, -96)
+
+[node name="BaseEnemy3" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(-62, 6)
+
+[node name="BaseEnemy9" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(-34, -77)
+
+[node name="BaseEnemy11" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(168, 5)
+
+[node name="BaseEnemy12" parent="Enemies" instance=ExtResource("2_ooroq")]
+position = Vector2(148, -24)
