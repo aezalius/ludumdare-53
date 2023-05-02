@@ -15,6 +15,10 @@ class_name Player
 @onready var camera = $Camera2D
 @onready var direction_pointer = $DirectionPointer
 @onready var immunity_timer = $ImmunityTimer
+@onready var hit_audio_player = $HitAudioPlayer
+@onready var walk_audio_player = $WalkAudioPlayer
+
+@onready var dialogue_audio_player = $DialogueAudioPlayer
 
 ##
 # Package related stuff, to be reworked
@@ -43,8 +47,8 @@ var can_roll = true
 
 ##
 # Hitpoints
-@export var max_hp: int = 2
-@export var cur_hp: int = 2
+@export var max_hp: int = 3
+@export var cur_hp: int = 3
 
 #
 # Called when the node is instanced
@@ -125,6 +129,7 @@ func _physics_process(_delta):
 			is_rolling = true
 			stop_movement()
 			anim_player.play("Dash")
+			walk_audio_player.play()
 			can_roll = false
 			roll_timer.start()
 			roll_cooldown.start() # apparently cannot be called in a function called elsewhere, huh
@@ -136,6 +141,8 @@ func _physics_process(_delta):
 		if new_velocity != Vector2.ZERO:
 			if not is_rolling and cur_hp > 0:
 				anim_player.play("Walking")
+				if not walk_audio_player.is_playing():
+					walk_audio_player.play()
 			if direction.x < 0:
 				sprite.flip_h = true
 			else:
@@ -168,6 +175,7 @@ func damage():
 	# I-Frames
 	if immunity_timer.is_stopped():
 		immunity_timer.start()
+		hit_audio_player.play()
 		if not package_sprite.visible:
 			cur_hp -= 1
 			if cur_hp <= 0:

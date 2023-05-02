@@ -53,6 +53,7 @@ func spell_cooldown_timeout():
 		spells_cast_in_burst += 1
 		var new_spell = spell_scene.instantiate()
 		get_tree().root.add_child(new_spell) # Spell should contain the spawning logic
+		$CastAudioPlayer.play()
 		if spells_cast_in_burst < spell_burst_cast_amount:
 			if spell_cast_timer.is_stopped():
 				spell_cast_timer.start(spell_cast_delay)

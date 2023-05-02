@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cq4jiahane1na"]
 
 [ext_resource type="PackedScene" uid="uid://piolujfj6hrr" path="res://Levels/World1.tscn" id="1_idu0f"]
-[ext_resource type="PackedScene" uid="uid://dgxjxwuoi15bl" path="res://Entities/Player/Player.tscn" id="1_x4na2"]
+[ext_resource type="PackedScene" uid="uid://burminmmqqolu" path="res://Entities/Player/Player.tscn" id="1_x4na2"]
 [ext_resource type="Theme" uid="uid://cxfjh2gm74sf1" path="res://Themes/InGameTheme.tres" id="2_lqo3r"]
 [ext_resource type="Script" path="res://Scripts/DialogueLabel.gd" id="6_vn1cp"]
 

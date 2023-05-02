@@ -73,4 +73,7 @@ Boss generates some request for you, to go and collect some items out in the wor
 	1. Add some action other than rolling
 	2. Main menu
 	3. intro cutscene?
-	4. 
+
+## Sounds from
+https://opengameart.org/content/50-rpg-sound-effects
+https://opengameart.org/content/goblins-sound-pack

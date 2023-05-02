@@ -1,19 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbummd8u3x56p"]
+[gd_scene load_steps=9 format=3 uid="uid://dbummd8u3x56p"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/CasterEnemy/CasterEnemy.gd" id="1_gjrww"]
 [ext_resource type="Texture2D" uid="uid://dha2w6yo7uh65" path="res://Entities/Enemies/CasterEnemy/Caster.png" id="2_fhduo"]
 [ext_resource type="Texture2D" uid="uid://c038khbromnbg" path="res://Entities/Player/TorchGradient_mid.png" id="3_rfe68"]
+[ext_resource type="AudioStream" uid="uid://bqkdua82xsycx" path="res://Sounds/SpellSounds/shade10.wav" id="4_38yb5"]
+[ext_resource type="AudioStream" uid="uid://cud0mx3mgxubk" path="res://Sounds/SpellSounds/shade14.wav" id="5_gqkg0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jvlus"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gp5om"]
 radius = 122.004
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x5uhf"]
+streams_count = 2
+stream_0/stream = ExtResource("4_38yb5")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_gqkg0")
+stream_1/weight = 1.0
+
 [node name="CasterEnemy" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_gjrww")
-move_speed = 60
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fhduo")
@@ -42,5 +50,9 @@ scale = Vector2(0.5, 0.35)
 color = Color(1, 1, 1, 0.388235)
 blend_mode = 2
 texture = ExtResource("3_rfe68")
+
+[node name="CastAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_x5uhf")
+volume_db = -28.803
 
 [connection signal="timeout" from="SpellCastTimer" to="." method="_on_spell_cast_timer_timeout"]

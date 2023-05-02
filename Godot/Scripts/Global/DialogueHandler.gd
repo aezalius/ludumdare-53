@@ -15,6 +15,7 @@ func next_dialogue_line() -> void:
 	if current_speech.size() > 0 and speech_index < current_speech.size():
 		QuestHandler.emit_signal("stop_movement")
 		emit_signal("next_dialogue_line_s", current_speech[speech_index])
+		GameHandler.player_instance.dialogue_audio_player.play()
 		speech_index += 1
 		#if free_encounter_with_dialogue:
 		#	QuestHandler.emit_signal("remove_encounter")

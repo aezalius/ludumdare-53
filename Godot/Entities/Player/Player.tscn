@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgxjxwuoi15bl"]
+[gd_scene load_steps=29 format=3 uid="uid://burminmmqqolu"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_wm223"]
 [ext_resource type="Texture2D" uid="uid://bdhstl0tusmvo" path="res://Entities/Interactables/Package/package.png" id="2_m2id7"]
@@ -7,6 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://c038khbromnbg" path="res://Entities/Player/TorchGradient_mid.png" id="5_iojmn"]
 [ext_resource type="Texture2D" uid="uid://b21n5pmq71tel" path="res://Entities/Player/TorchGradient_inner.png" id="5_uugny"]
 [ext_resource type="Texture2D" uid="uid://xhs7skarkpbw" path="res://Entities/Player/DirectionArrow.png" id="7_lj7fr"]
+[ext_resource type="AudioStream" uid="uid://bexd4kg7jgsp2" path="res://Sounds/HitSounds/goblin-2.wav" id="8_r6n3k"]
+[ext_resource type="AudioStream" uid="uid://s0f2lkigqqdm" path="res://Sounds/HitSounds/goblin-1.wav" id="9_t8kjd"]
+[ext_resource type="AudioStream" uid="uid://yy3r1ofhk70u" path="res://Sounds/WalkSounds/footstep04.ogg" id="10_2tpog"]
+[ext_resource type="AudioStream" uid="uid://lbtfee271eew" path="res://Sounds/WalkSounds/footstep06.ogg" id="11_d2akw"]
+[ext_resource type="AudioStream" uid="uid://cx0apd6wuadir" path="res://Sounds/DialogueSounds/goblin-5.wav" id="11_ebbuj"]
+[ext_resource type="AudioStream" uid="uid://blyr7cff0vog1" path="res://Sounds/WalkSounds/footstep07.ogg" id="12_6vcdg"]
+[ext_resource type="AudioStream" uid="uid://c1nv3liw06oy5" path="res://Sounds/DialogueSounds/goblin-8.wav" id="12_8a1r2"]
+[ext_resource type="AudioStream" uid="uid://bibxbt54t17ve" path="res://Sounds/WalkSounds/footstep09.ogg" id="13_psdm5"]
 
 [sub_resource type="GDScript" id="GDScript_16fat"]
 script/source = "extends Sprite2D
@@ -131,6 +139,33 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7ea4"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0hhl3"]
+streams_count = 2
+stream_0/stream = ExtResource("8_r6n3k")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("9_t8kjd")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pmpjh"]
+streams_count = 4
+random_pitch = 1.51
+stream_0/stream = ExtResource("10_2tpog")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("11_d2akw")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("12_6vcdg")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("13_psdm5")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qlp5m"]
+streams_count = 2
+random_pitch = 1.35
+stream_0/stream = ExtResource("11_ebbuj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_8a1r2")
+stream_1/weight = 1.0
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 524545
 collision_mask = 257
@@ -220,6 +255,19 @@ one_shot = true
 
 [node name="DeathMoveTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HitAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_0hhl3")
+volume_db = -4.957
+
+[node name="WalkAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_pmpjh")
+volume_db = -35.318
+attenuation = 1.7411
+
+[node name="DialogueAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_qlp5m")
+volume_db = -22.168
 
 [connection signal="area_entered" from="CinematicAreaDetector" to="." method="_on_cinematic_area_detector_area_entered"]
 [connection signal="area_exited" from="CinematicAreaDetector" to="." method="_on_cinematic_area_detector_area_exited"]
